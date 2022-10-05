@@ -1,4 +1,4 @@
-module github.com/masred/dasar-golang/kominfo-hactiv8/session-7/2-gorm
+module github.com/masred/scalable-web-service-with-golang/session-07/2-gorm
 
 go 1.19
 

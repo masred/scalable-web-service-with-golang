@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/masred/dasar-golang/kominfo-hactiv8/session-7/2-gorm/models"
+	"github.com/masred/scalable-web-service-with-golang/session-07/2-gorm/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

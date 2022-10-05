@@ -1,6 +1,6 @@
 package main
 
-import "github.com/go-digitalent-hacktiv8/session-6/2-gin/routers"
+import "github.com/masred/scalable-web-service-with-golang/session-06/2-gin/routers"
 
 func main() {
 	var PORT = ":8080"

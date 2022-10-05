@@ -1,4 +1,4 @@
-module github.com/masred/dasar-golang/kominfo-hacktiv8/session-7/1-go-sql
+module github.com/masred/scalable-web-service-with-golang/session-07/1-go-sql
 
 go 1.19
 

@@ -1,3 +1,3 @@
-module github.com/go-digitalent-hacktiv8/session-1
+module github.com/masred/scalable-web-service-with-golang/session-01
 
 go 1.19

@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/go-digitalent-hacktiv8/session-6/2-gin/controllers"
+	"github.com/masred/scalable-web-service-with-golang/session-06/2-gin/controllers"
 )
 
 func StartServer() *gin.Engine {

@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/masred/dasar-golang/kominfo-hactiv8/session-7/2-gorm/database"
-	"github.com/masred/dasar-golang/kominfo-hactiv8/session-7/2-gorm/models"
+	"github.com/masred/scalable-web-service-with-golang/session-07/2-gorm/database"
+	"github.com/masred/scalable-web-service-with-golang/session-07/2-gorm/models"
 	"gorm.io/gorm"
 )
 
