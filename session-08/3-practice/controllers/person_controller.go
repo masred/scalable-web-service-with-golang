@@ -69,7 +69,7 @@ func (idb *InDB) CreatePerson(c *gin.Context) {
 }
 
 func (idb *InDB) UpdatePerson(c *gin.Context) {
-	id := c.Query("id")
+	id := c.Param("id")
 	first_name := c.PostForm("first_name")
 	last_name := c.PostForm("last_name")
 	var (
