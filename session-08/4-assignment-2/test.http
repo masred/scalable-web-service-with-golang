@@ -1,0 +1,55 @@
+### Get All Orders
+GET http://localhost:8080/orders
+Accept: application/json
+
+### Get Order By ID
+GET http://localhost:8080/orders/1
+Accept: application/json
+
+### Create Order
+POST http://localhost:8080/orders
+Content-Type: application/json
+Accept: application/json
+
+{
+    "customer_name": "ujang",
+    "ordered_at": "2022-11-09T21:21:46+00:00",
+    "items":[
+        {
+            "item_code": "3245",
+            "description": "Keyboard",
+            "quantity": 15
+        },
+        {
+            "item_code": "4123",
+            "description": "Mouse",
+            "quantity": 21
+        }
+    ]
+}
+
+### Update Order
+PUT http://localhost:8080/orders/1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "customer_name": "mas ujang",
+    "ordered_at": "2022-11-09T21:21:46+00:00",
+    "items":[
+        {
+            "item_code": "3245",
+            "description": "Keyboard RGB",
+            "quantity": 15
+        },
+        {
+            "item_code": "4123",
+            "description": "Mouse RGB",
+            "quantity": 21
+        }
+    ]
+}
+
+### Delete Order
+DELETE http://localhost:8080/orders/1
+Accept: application/json

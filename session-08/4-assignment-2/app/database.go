@@ -22,7 +22,7 @@ func NewDB() *gorm.DB {
 	db, err := gorm.Open(postgres.Open(config))
 	helper.PanicIfError(err)
 
-	err = db.AutoMigrate(&domain.Item{}, &domain.Order{})
+	err = db.AutoMigrate(&domain.Order{}, &domain.Item{})
 	helper.PanicIfError(err)
 
 	return db
