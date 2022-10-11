@@ -1,0 +1,45 @@
+### GET All
+GET http://localhost:8080/language HTTP/1.1
+Accept: application/json
+
+### Create
+POST http://localhost:8080/language HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "language": "Go",
+  "appeared": 2009,
+  "created": ["Robert Griesemer", "Rob Pike", "Ken Thompson"],
+  "functional": true,
+  "object_oriented": false,
+  "relation": {
+    "influenced_by": ["C", "Python", "Pascal", "Smalltalk", "Modula"],
+    "influences": ["Odin", "Crystal", "Zig"]
+  }
+}
+
+### Get One
+GET http://localhost:8080/language/2 HTTP/1.1
+Accept: application/json
+
+### Update
+PUT http://localhost:8080/language/2 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "language": "Python",
+  "appeared": 1991,
+  "created": ["Guido van Rossum"],
+  "functional": true,
+  "object-oriented": true,
+  "relation": {
+    "influenced-by": ["C", "C++", "ALGOL 68", "Ada", "Haskell", "Java", "Lisp"],
+    "influences": ["Go", "CoffeeScript", "JavaScript", "Julia", "Ruby", "Swift"]
+  }
+}
+
+### Delete
+DELETE http://localhost:8080/language/2 HTTP/1.1
+Accept: application/json
