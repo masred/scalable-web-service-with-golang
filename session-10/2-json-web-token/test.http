@@ -1,0 +1,40 @@
+### Register JSON
+POST http://localhost:8080/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "email" : "masred@gmail.com",
+    "full_name" : "Masred",
+    "password": "asdfasdf"
+}
+
+### Register Form
+POST http://localhost:8080/users/register HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+&email=ujang@gmail.com
+&full_name=ujang
+&password=asdfasdf
+
+### Login
+POST http://localhost:8080/users/login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+&email=masred@gmail.com
+&password=asdfasdf
+
+### Create Product
+POST http://localhost:8080/products HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hc3JlZEBnbWFpbC5jb20iLCJpZCI6MX0.i2QmYrhRA2rerp7qmgtYKwtNuSZCrMefRS2lnAzZafE
+
+&title=Baju
+&description=keren bat
+
+### Update Product
+put http://localhost:8080/products/3 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVqYW5nQGdtYWlsLmNvbSIsImlkIjo2fQ.ZOLi5l654pyaUiMh7EAqj6Gm9oTqX68m58L2ca3GHB0
+
+&title=kolor
+&description=gg
