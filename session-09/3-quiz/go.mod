@@ -1,4 +1,4 @@
-module github.com/masred/scalable-web-service-with-golang/session-09/quiz
+module github.com/masred/scalable-web-service-with-golang/session-09/3-quiz
 
 go 1.19
 
