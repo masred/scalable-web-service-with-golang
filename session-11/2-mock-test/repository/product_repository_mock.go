@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/masred/scalable-web-service-with-golang/session-11/1-unit-test/entity"
+	"github.com/masred/scalable-web-service-with-golang/session-11/2-mock-test/entity"
 	"github.com/stretchr/testify/mock"
 )
 
