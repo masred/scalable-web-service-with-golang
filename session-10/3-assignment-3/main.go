@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"html/template"
 	"math/rand"
+	"net/http"
 	"os"
 	"time"
 
@@ -20,31 +20,20 @@ type Status struct {
 }
 
 func main() {
-	var data Json
-
-	go func() {
-		for range time.Tick(time.Second * 15) {
-			rand.Seed(time.Now().UnixNano())
-
-			data.Status.Water = rand.Intn(100)
-			data.Status.Wind = rand.Intn(100)
-
-			file, _ := os.Create("status.json")
-			jsonData, _ := json.Marshal(data)
-
-			file.WriteString(string(jsonData))
-			file.Close()
-		}
-	}()
-
 	router := gin.Default()
+	router.LoadHTMLFiles("index.html")
 	router.GET("/", func(ctx *gin.Context) {
-		t, err := template.ParseFiles("index.html")
-		if err != nil {
-			panic(err)
-		}
-
 		var data Json
+		rand.Seed(time.Now().UnixNano())
+
+		data.Status.Water, data.Status.Wind = rand.Intn(100), rand.Intn(100)
+
+		file, _ := os.Create("status.json")
+		jsonData, _ := json.Marshal(data)
+
+		file.WriteString(string(jsonData))
+		file.Close()
+
 		dataFile, _ := os.ReadFile("status.json")
 		json.Unmarshal(dataFile, &data)
 
@@ -66,14 +55,13 @@ func main() {
 			windStatus = "aman"
 		}
 
-		dataMap := map[string]interface{}{
+		ctx.HTML(http.StatusOK, "index.html", gin.H{
 			"Water":       data.Status.Water,
 			"WaterStatus": waterStatus,
 			"Wind":        data.Status.Wind,
 			"WindStatus":  windStatus,
-		}
-
-		t.Execute(ctx.Writer, dataMap)
+		})
 	})
+
 	router.Run()
 }
