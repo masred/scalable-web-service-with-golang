@@ -1,9 +1,9 @@
 package domain
 
-import "github.com/masred/scalable-web-service-with-golang/session-12/final-project/models"
+import "github.com/masred/scalable-web-service-with-golang/session-12/final-project/model"
 
 type User struct {
-	models.Gorm
+	model.Gorm
 	Username    string        `gorm:"not null;unique" validate:"required,unique"  json:"username"`
 	Email       string        `gorm:"not null;unique" validate:"email,required,unique" json:"email"`
 	Password    string        `gorm:"not null" validate:"required,min:8" json:"password"`
