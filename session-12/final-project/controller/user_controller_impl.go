@@ -130,7 +130,8 @@ func (controller *UserControllerImpl) Login(ctx *gin.Context) {
 func (controller *UserControllerImpl) Update(ctx *gin.Context) {
 	var req request.UserUpdateRequest
 
-	id := ctx.Param("id")
+	userData := ctx.MustGet("userData").(jwt.MapClaims)
+	id := string(userData["id"].(string))
 
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		validationError := err.(validator.ValidationErrors)

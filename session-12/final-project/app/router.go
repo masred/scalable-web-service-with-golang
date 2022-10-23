@@ -15,7 +15,7 @@ func NewRoute(controller controller.UserController) *gin.Engine {
 		userRouter.POST("/login", controller.Login)
 
 		{
-			userRouter.PUT("/:id", middleware.Auth(), controller.Update)
+			userRouter.PUT("/", middleware.Auth(), controller.Update)
 			userRouter.DELETE("/", middleware.Auth(), controller.Delete)
 		}
 	}
