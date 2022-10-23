@@ -1,14 +1,29 @@
 package domain
 
-import "github.com/masred/scalable-web-service-with-golang/session-12/final-project/model"
+import (
+	"time"
+
+	"github.com/google/uuid"
+	"github.com/masred/scalable-web-service-with-golang/session-12/final-project/helper"
+	"gorm.io/gorm"
+)
 
 type User struct {
-	model.Gorm
-	Username    string        `gorm:"not null;unique" validate:"required,unique"  json:"username"`
-	Email       string        `gorm:"not null;unique" validate:"email,required,unique" json:"email"`
-	Password    string        `gorm:"not null" validate:"required,min:8" json:"password"`
-	Age         int           `json:"age"`
-	SocialMedia []SocialMedia `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"social_media"`
-	Comment     []Comment     `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"comment"`
-	Photo       []Photo       `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE" json:"photo"`
+	ID          string `gorm:"primaryKey"`
+	Username    string `gorm:"not null;uniqueIndex"`
+	Email       string `gorm:"not null;uniqueIndex"`
+	Password    string `gorm:"not null"`
+	Age         int    `gorm:"not null"`
+	SocialMedia []SocialMedia
+	Comment     []Comment
+	Photo       []Photo
+	UpdatedAt   time.Time
+	CreatedAt   time.Time
+}
+
+func (user *User) BeforeCreate(db *gorm.DB) (err error) {
+	user.ID = uuid.NewString()
+	user.Password = helper.Hash(user.Password)
+
+	return
 }

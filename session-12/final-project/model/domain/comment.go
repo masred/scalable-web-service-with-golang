@@ -1,10 +1,12 @@
 package domain
 
-import "github.com/masred/scalable-web-service-with-golang/session-12/final-project/model"
+import "time"
 
 type Comment struct {
-	model.Gorm
-	UserID  string `gorm:"type:VARCHAR(50);not null" json:"user_id"`
-	PhotoID string `gorm:"type:VARCHAR(50);not null" json:"photo_id"`
-	Message string `gorm:"not null" validate:"required" json:"message"`
+	ID        string    `gorm:"primaryKey;type:VARCHAR(100)" json:"id"`
+	UserID    string    `gorm:"type:VARCHAR(50);not null" json:"user_id"`
+	PhotoID   string    `gorm:"type:VARCHAR(50);not null" json:"photo_id"`
+	Message   string    `gorm:"not null" validate:"required" json:"message"`
+	UpdatedAt time.Time `json:"updated_at,omitempty"`
+	CreatedAt time.Time `json:"created_at,omitempty"`
 }

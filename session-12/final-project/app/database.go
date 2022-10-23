@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/masred/scalable-web-service-with-golang/session-12/final-project/models/domain"
+	"github.com/masred/scalable-web-service-with-golang/session-12/final-project/model/domain"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
