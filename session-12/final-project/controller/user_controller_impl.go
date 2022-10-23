@@ -49,7 +49,7 @@ func (controller *UserControllerImpl) Register(ctx *gin.Context) {
 		Username: req.Username,
 	}
 
-	if err := controller.UserService.Register(ctx.Request.Context(), &user); err != nil {
+	if err := controller.UserService.Register(&user); err != nil {
 		fieldErrorResponse := make(map[string]interface{})
 
 		if strings.Contains(err.Error(), "idx_users_email") {
@@ -106,7 +106,7 @@ func (controller *UserControllerImpl) Login(ctx *gin.Context) {
 		Password: req.Password,
 	}
 
-	if err := controller.UserService.Login(ctx.Request.Context(), &user); err != nil {
+	if err := controller.UserService.Login(&user); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusUnauthorized, response.ErrorResponse{
 			Code:   http.StatusUnauthorized,
 			Status: "Unauthorized",
@@ -156,7 +156,7 @@ func (controller *UserControllerImpl) Update(ctx *gin.Context) {
 		Email:    req.Email,
 	}
 
-	updatedUser, err := controller.UserService.Update(ctx.Request.Context(), &user)
+	updatedUser, err := controller.UserService.Update(&user)
 	if err != nil {
 		fieldErrorResponse := make(map[string]interface{})
 
@@ -198,7 +198,7 @@ func (controller *UserControllerImpl) Delete(ctx *gin.Context) {
 	userData := ctx.MustGet("userData").(jwt.MapClaims)
 	id := uint(userData["id"].(float64))
 
-	if err := controller.UserService.Delete(ctx, id); err != nil {
+	if err := controller.UserService.Delete(id); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response.ErrorResponse{
 			Code:   http.StatusBadRequest,
 			Status: "Bad Request",

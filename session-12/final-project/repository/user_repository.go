@@ -1,14 +1,12 @@
 package repository
 
 import (
-	"context"
-
 	"github.com/masred/scalable-web-service-with-golang/session-12/final-project/model/domain"
 )
 
 type UserRepository interface {
-	Register(ctx context.Context, user *domain.User) (err error)
-	Login(ctx context.Context, user *domain.User) (err error)
-	Update(ctx context.Context, user *domain.User) (u domain.User, err error)
-	Delete(ctx context.Context, id uint) (err error)
+	Register(user *domain.User) (err error)
+	Login(user *domain.User) (err error)
+	Update(user *domain.User) (updatedUser domain.User, err error)
+	Delete(id uint) (err error)
 }

@@ -1,9 +1,7 @@
 package repository
 
 import (
-	"context"
 	"errors"
-	"time"
 
 	"github.com/masred/scalable-web-service-with-golang/session-12/final-project/helper"
 	"github.com/masred/scalable-web-service-with-golang/session-12/final-project/model/domain"
@@ -18,24 +16,18 @@ func NewUserRepository(db *gorm.DB) *UserRepositoryImpl {
 	return &UserRepositoryImpl{DB: db}
 }
 
-func (repository *UserRepositoryImpl) Register(ctx context.Context, user *domain.User) (err error) {
-	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
-	defer cancel()
-
-	if err = repository.DB.WithContext(ctx).Create(&user).Error; err != nil {
+func (repository *UserRepositoryImpl) Register(user *domain.User) (err error) {
+	if err = repository.DB.Create(&user).Error; err != nil {
 		return err
 	}
 
 	return
 }
 
-func (repository *UserRepositoryImpl) Login(ctx context.Context, user *domain.User) (err error) {
-	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
-	defer cancel()
-
+func (repository *UserRepositoryImpl) Login(user *domain.User) (err error) {
 	password := user.Password
 
-	err = repository.DB.WithContext(ctx).Where("email = ?", user.Email).Take(&user).Error
+	err = repository.DB.Where("email = ?", user.Email).Take(&user).Error
 	isValid := helper.Compare([]byte(user.Password), []byte(password))
 
 	if err != nil || !isValid {
@@ -45,32 +37,26 @@ func (repository *UserRepositoryImpl) Login(ctx context.Context, user *domain.Us
 	return
 }
 
-func (repository *UserRepositoryImpl) Update(ctx context.Context, user *domain.User) (updatedUser domain.User, err error) {
-	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
-	defer cancel()
-
+func (repository *UserRepositoryImpl) Update(user *domain.User) (updatedUser domain.User, err error) {
 	updatedUser = domain.User{}
 
-	if err = repository.DB.WithContext(ctx).First(&updatedUser, &user.ID).Error; err != nil {
+	if err = repository.DB.First(&updatedUser, &user.ID).Error; err != nil {
 		return updatedUser, err
 	}
 
-	if err = repository.DB.WithContext(ctx).Model(&updatedUser).Updates(user).Error; err != nil {
+	if err = repository.DB.Model(&updatedUser).Updates(user).Error; err != nil {
 		return updatedUser, err
 	}
 
 	return updatedUser, nil
 }
 
-func (repository *UserRepositoryImpl) Delete(ctx context.Context, id uint) (err error) {
-	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
-	defer cancel()
-
-	if err = repository.DB.WithContext(ctx).First(&domain.User{}, &id).Error; err != nil {
+func (repository *UserRepositoryImpl) Delete(id uint) (err error) {
+	if err = repository.DB.First(&domain.User{}, &id).Error; err != nil {
 		return err
 	}
 
-	if err = repository.DB.WithContext(ctx).Delete(&domain.User{}, &id).Error; err != nil {
+	if err = repository.DB.Delete(&domain.User{}, &id).Error; err != nil {
 		return err
 	}
 
