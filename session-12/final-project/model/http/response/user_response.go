@@ -3,10 +3,10 @@ package response
 import "time"
 
 type UserRegisterResponse struct {
-	Age      int    `json:"age"`
+	ID       uint   `json:"id"`
 	Email    string `json:"email"`
-	ID       string `json:"id"`
 	Username string `json:"username"`
+	Age      int    `json:"age"`
 }
 
 type UserLoginResponse struct {
@@ -14,10 +14,10 @@ type UserLoginResponse struct {
 }
 
 type UserUpdateResponse struct {
-	Age       int       `json:"age"`
+	ID        uint      `json:"id"`
 	Email     string    `json:"email"`
-	ID        string    `json:"id"`
 	Username  string    `json:"username"`
+	Age       int       `json:"age"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 

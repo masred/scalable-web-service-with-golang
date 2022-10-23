@@ -3,13 +3,12 @@ package domain
 import (
 	"time"
 
-	"github.com/google/uuid"
 	"github.com/masred/scalable-web-service-with-golang/session-12/final-project/helper"
 	"gorm.io/gorm"
 )
 
 type User struct {
-	ID          string `gorm:"primaryKey"`
+	ID          uint   `gorm:"primaryKey"`
 	Username    string `gorm:"not null;uniqueIndex"`
 	Email       string `gorm:"not null;uniqueIndex"`
 	Password    string `gorm:"not null"`
@@ -21,9 +20,8 @@ type User struct {
 	CreatedAt   time.Time
 }
 
-func (user *User) BeforeCreate(db *gorm.DB) (err error) {
-	user.ID = uuid.NewString()
+func (user *User) BeforeCreate(db *gorm.DB) error {
 	user.Password = helper.Hash(user.Password)
 
-	return
+	return nil
 }
