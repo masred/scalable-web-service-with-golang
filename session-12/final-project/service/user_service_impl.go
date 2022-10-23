@@ -39,7 +39,7 @@ func (service *UserServiceImpl) Update(ctx context.Context, user *domain.User) (
 	return u, nil
 }
 
-func (service *UserServiceImpl) Delete(ctx context.Context, id string) (err error) {
+func (service *UserServiceImpl) Delete(ctx context.Context, id uint) (err error) {
 	if err = service.UserRepository.Delete(ctx, id); err != nil {
 		return err
 	}
