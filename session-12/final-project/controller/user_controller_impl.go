@@ -131,7 +131,7 @@ func (controller *UserControllerImpl) Update(ctx *gin.Context) {
 	var req request.UserUpdateRequest
 
 	userData := ctx.MustGet("userData").(jwt.MapClaims)
-	id := uint(userData["id"].(uint))
+	id := uint(userData["id"].(float64))
 
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		validationError := err.(validator.ValidationErrors)
@@ -196,7 +196,7 @@ func (controller *UserControllerImpl) Update(ctx *gin.Context) {
 
 func (controller *UserControllerImpl) Delete(ctx *gin.Context) {
 	userData := ctx.MustGet("userData").(jwt.MapClaims)
-	id := string(userData["id"].(string))
+	id := uint(userData["id"].(float64))
 
 	if err := controller.UserService.Delete(ctx, id); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response.ErrorResponse{

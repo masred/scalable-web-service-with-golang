@@ -7,8 +7,8 @@ import (
 )
 
 type UserService interface {
-	Register(context.Context, *domain.User) error
-	Login(context.Context, *domain.User) error
-	Update(context.Context, *domain.User) (domain.User, error)
-	Delete(context.Context, string) error
+	Register(ctx context.Context, user *domain.User) error
+	Login(ctx context.Context, user *domain.User) error
+	Update(ctx context.Context, user *domain.User) (domain.User, error)
+	Delete(ctx context.Context, id uint) error
 }

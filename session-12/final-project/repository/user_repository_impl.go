@@ -62,7 +62,7 @@ func (repository *UserRepositoryImpl) Update(ctx context.Context, user *domain.U
 	return updatedUser, nil
 }
 
-func (repository *UserRepositoryImpl) Delete(ctx context.Context, id string) (err error) {
+func (repository *UserRepositoryImpl) Delete(ctx context.Context, id uint) (err error) {
 	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
 	defer cancel()
 
