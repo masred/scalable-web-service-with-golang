@@ -13,32 +13,32 @@ func NewUserService(userRepository repository.UserRepository) *UserServiceImpl {
 	return &UserServiceImpl{UserRepository: userRepository}
 }
 
-func (service *UserServiceImpl) Register(user *domain.User) (err error) {
-	if err = service.UserRepository.Register(user); err != nil {
+func (userService *UserServiceImpl) Register(user *domain.User) (err error) {
+	if err = userService.UserRepository.Register(user); err != nil {
 		return err
 	}
 
 	return
 }
 
-func (service *UserServiceImpl) Login(user *domain.User) (err error) {
-	if err = service.UserRepository.Login(user); err != nil {
+func (userService *UserServiceImpl) Login(user *domain.User) (err error) {
+	if err = userService.UserRepository.Login(user); err != nil {
 		return err
 	}
 
 	return
 }
 
-func (service *UserServiceImpl) Update(user *domain.User) (u domain.User, err error) {
-	if u, err = service.UserRepository.Update(user); err != nil {
+func (userService *UserServiceImpl) Update(user *domain.User) (u domain.User, err error) {
+	if u, err = userService.UserRepository.Update(user); err != nil {
 		return u, err
 	}
 
 	return u, nil
 }
 
-func (service *UserServiceImpl) Delete(id uint) (err error) {
-	if err = service.UserRepository.Delete(id); err != nil {
+func (userService *UserServiceImpl) Delete(id uint) (err error) {
+	if err = userService.UserRepository.Delete(id); err != nil {
 		return err
 	}
 
