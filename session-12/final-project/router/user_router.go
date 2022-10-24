@@ -23,8 +23,8 @@ func UserRouter(router *gin.Engine) {
 		userRouter.POST("/login", ctrl.Login)
 
 		{
-			userRouter.PUT("/", middleware.Auth(), ctrl.Update)
-			userRouter.DELETE("/", middleware.Auth(), ctrl.Delete)
+			userRouter.PUT("/", middleware.AuthMiddleware(), ctrl.Update)
+			userRouter.DELETE("/", middleware.AuthMiddleware(), ctrl.Delete)
 		}
 	}
 }

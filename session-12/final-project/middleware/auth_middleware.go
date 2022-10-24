@@ -8,7 +8,7 @@ import (
 	"github.com/masred/scalable-web-service-with-golang/session-12/final-project/model/http/response"
 )
 
-func Auth() gin.HandlerFunc {
+func AuthMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		verifyToken, err := helper.VerifyToken(ctx)
 

@@ -16,7 +16,7 @@ func PhotoRouter(router *gin.Engine) {
 	srv := service.NewPhotoService(repo)
 	ctrl := controller.NewPhotoController(srv)
 
-	photoRouter := router.Group("/photos", middleware.Auth())
+	photoRouter := router.Group("/photos", middleware.AuthMiddleware())
 
 	{
 		photoRouter.POST("/", ctrl.Create)
