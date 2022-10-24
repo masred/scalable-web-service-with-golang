@@ -22,7 +22,7 @@ func NewUserController(userService service.UserService) UserController {
 	return &UserControllerImpl{UserService: userService}
 }
 
-func (controller *UserControllerImpl) Register(ctx *gin.Context) {
+func (userController *UserControllerImpl) Register(ctx *gin.Context) {
 	var req request.UserRegisterRequest
 
 	if err := ctx.ShouldBindJSON(&req); err != nil {
@@ -49,7 +49,7 @@ func (controller *UserControllerImpl) Register(ctx *gin.Context) {
 		Username: req.Username,
 	}
 
-	if err := controller.UserService.Register(&user); err != nil {
+	if err := userController.UserService.Register(&user); err != nil {
 		fieldErrorResponse := make(map[string]interface{})
 
 		if strings.Contains(err.Error(), "idx_users_email") {
@@ -81,7 +81,7 @@ func (controller *UserControllerImpl) Register(ctx *gin.Context) {
 	})
 }
 
-func (controller *UserControllerImpl) Login(ctx *gin.Context) {
+func (userController *UserControllerImpl) Login(ctx *gin.Context) {
 	var req request.UserLoginRequest
 
 	if err := ctx.ShouldBindJSON(&req); err != nil {
@@ -106,7 +106,7 @@ func (controller *UserControllerImpl) Login(ctx *gin.Context) {
 		Password: req.Password,
 	}
 
-	if err := controller.UserService.Login(&user); err != nil {
+	if err := userController.UserService.Login(&user); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusUnauthorized, response.ErrorResponse{
 			Code:   http.StatusUnauthorized,
 			Status: "Unauthorized",
@@ -127,7 +127,7 @@ func (controller *UserControllerImpl) Login(ctx *gin.Context) {
 	})
 }
 
-func (controller *UserControllerImpl) Update(ctx *gin.Context) {
+func (userController *UserControllerImpl) Update(ctx *gin.Context) {
 	var req request.UserUpdateRequest
 
 	userData := ctx.MustGet("userData").(jwt.MapClaims)
@@ -156,7 +156,7 @@ func (controller *UserControllerImpl) Update(ctx *gin.Context) {
 		Email:    req.Email,
 	}
 
-	updatedUser, err := controller.UserService.Update(&user)
+	updatedUser, err := userController.UserService.Update(&user)
 	if err != nil {
 		fieldErrorResponse := make(map[string]interface{})
 
@@ -194,11 +194,11 @@ func (controller *UserControllerImpl) Update(ctx *gin.Context) {
 	})
 }
 
-func (controller *UserControllerImpl) Delete(ctx *gin.Context) {
+func (userController *UserControllerImpl) Delete(ctx *gin.Context) {
 	userData := ctx.MustGet("userData").(jwt.MapClaims)
 	id := uint(userData["id"].(float64))
 
-	if err := controller.UserService.Delete(id); err != nil {
+	if err := userController.UserService.Delete(id); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, response.ErrorResponse{
 			Code:   http.StatusBadRequest,
 			Status: "Bad Request",
