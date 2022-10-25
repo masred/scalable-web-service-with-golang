@@ -19,7 +19,7 @@ type PhotoControllerImpl struct {
 	PhotoService service.PhotoService
 }
 
-func NewPhotoController(photoService service.PhotoService) *PhotoControllerImpl {
+func NewPhotoController(photoService service.PhotoService) PhotoController {
 	return &PhotoControllerImpl{PhotoService: photoService}
 }
 

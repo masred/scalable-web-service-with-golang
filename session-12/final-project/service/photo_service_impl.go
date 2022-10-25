@@ -9,7 +9,7 @@ type PhotoServiceImpl struct {
 	PhotoRepository repository.PhotoRepository
 }
 
-func NewPhotoService(photoRepository repository.PhotoRepository) *PhotoServiceImpl {
+func NewPhotoService(photoRepository repository.PhotoRepository) PhotoService {
 	return &PhotoServiceImpl{PhotoRepository: photoRepository}
 }
 
