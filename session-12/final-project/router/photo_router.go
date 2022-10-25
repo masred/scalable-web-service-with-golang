@@ -21,7 +21,7 @@ func PhotoRouter(router *gin.Engine) {
 	{
 		photoRouter.POST("/", ctrl.Create)
 		photoRouter.GET("/", ctrl.GetAll)
-		photoRouter.PUT("/:id", middleware.PhotoMiddleware(ctrl.PhotoService), ctrl.Update)
-		photoRouter.DELETE("/:id", middleware.PhotoMiddleware(ctrl.PhotoService), ctrl.Delete)
+		photoRouter.PUT("/:id", middleware.PhotoMiddleware(srv), ctrl.Update)
+		photoRouter.DELETE("/:id", middleware.PhotoMiddleware(srv), ctrl.Delete)
 	}
 }
