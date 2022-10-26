@@ -3,10 +3,12 @@ package domain
 import "time"
 
 type Comment struct {
-	ID        string    `gorm:"primaryKey;type:VARCHAR(100)" json:"id"`
-	UserID    string    `gorm:"type:VARCHAR(50);not null" json:"user_id"`
-	PhotoID   string    `gorm:"type:VARCHAR(50);not null" json:"photo_id"`
-	Message   string    `gorm:"not null" validate:"required" json:"message"`
-	UpdatedAt time.Time `json:"updated_at,omitempty"`
-	CreatedAt time.Time `json:"created_at,omitempty"`
+	ID        uint   `gorm:"primaryKey"`
+	UserID    uint   `gorm:"not null"`
+	PhotoID   uint   `gorm:"not null"`
+	Message   string `gorm:"not null"`
+	UpdatedAt time.Time
+	CreatedAt time.Time
+	User      User  `gorm:"foreignKey:UserID"`
+	Photo     Photo `gorm:"foreignKey:PhotoID"`
 }
