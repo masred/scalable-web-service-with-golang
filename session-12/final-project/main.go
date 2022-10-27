@@ -20,6 +20,7 @@ func main() {
 	router.UserRouter(r)
 	router.PhotoRouter(r)
 	router.CommentRouter(r)
+	router.SocialMediaRouter(r)
 
 	r.Run(fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT")))
 }

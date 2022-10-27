@@ -25,7 +25,9 @@ func CommentRouter(router *gin.Engine) {
 	{
 		commentRouter.POST("/", ctrl.Create)
 		commentRouter.GET("/", ctrl.GetAll)
-		commentRouter.PUT("/:commentId", middleware.CommentMiddleware(srvComment), ctrl.Update)
-		commentRouter.DELETE("/:commentId", middleware.CommentMiddleware(srvComment), ctrl.Delete)
+		{
+			commentRouter.PUT("/:commentId", middleware.CommentMiddleware(srvComment), ctrl.Update)
+			commentRouter.DELETE("/:commentId", middleware.CommentMiddleware(srvComment), ctrl.Delete)
+		}
 	}
 }

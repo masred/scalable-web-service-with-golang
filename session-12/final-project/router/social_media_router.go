@@ -9,21 +9,21 @@ import (
 	"github.com/masred/scalable-web-service-with-golang/session-12/final-project/service"
 )
 
-func PhotoRouter(router *gin.Engine) {
+func SocialMediaRouter(router *gin.Engine) {
 	db := app.NewDB()
 
-	repo := repository.NewPhotoRepository(db)
-	srv := service.NewPhotoService(repo)
-	ctrl := controller.NewPhotoController(srv)
+	repo := repository.NewSocialMediaRepository(db)
+	srv := service.NewSocialMediaService(repo)
+	ctrl := controller.NewSocialMediaController(srv)
 
-	photoRouter := router.Group("/photos", middleware.AuthMiddleware())
+	socialMedia := router.Group("/socialmedias", middleware.AuthMiddleware())
 
 	{
-		photoRouter.POST("/", ctrl.Create)
-		photoRouter.GET("/", ctrl.GetAll)
+		socialMedia.GET("/", ctrl.GetAll)
+		socialMedia.POST("/", ctrl.Create)
 		{
-			photoRouter.PUT("/:id", middleware.PhotoMiddleware(srv), ctrl.Update)
-			photoRouter.DELETE("/:id", middleware.PhotoMiddleware(srv), ctrl.Delete)
+			socialMedia.PUT("/:id", middleware.SocialMediaMiddleware(srv), ctrl.Update)
+			socialMedia.DELETE("/:id", middleware.SocialMediaMiddleware(srv), ctrl.Delete)
 		}
 	}
 }
